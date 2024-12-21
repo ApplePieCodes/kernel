@@ -1,11 +1,7 @@
 #include "limine.h"
 #include "core/limineutils.h"
-#include "memory.h"
+#include "core/memory.h"
 #include <stddef.h>
-
-#define PAGE_SIZE 4096
-
-memory_map map;
 
 int memcmp(const void* aptr, const void* bptr, size_t size) {
 	const unsigned char* a = (const unsigned char*) aptr;
@@ -45,26 +41,4 @@ void* memset(void* bufptr, int value, size_t size) {
 	for (size_t i = 0; i < size; i++)
 		buf[i] = (unsigned char) value;
 	return bufptr;
-}
-
-void setup_page_table() {
-	struct limine_memmap_response *response = get_memory_map();
-
-	struct limine_memmap_entry **entries = response->entries;
-
-	map.memory_size = 0;
-
-	for (uint64_t x = 0; x < response->entry_count; i++) {
-		map.memory_size += entries[x]->length;
-	}
-
-	for (uint64_t i = 0; i < response->entry_count; i++) {
-		if (entries[i]->length < PAGE_SIZE || entries[i]->type != LIMINE_MEMMAP_USABLE) {
-			continue;
-		}
-
-		int pagesfromsegment = (entries[i]->length - (entries[i]->length % 4096)) / 4096;
-
-		
-	}
 }

@@ -7,8 +7,8 @@ __attribute__((used, section(".limine_requests")))
 static volatile LIMINE_BASE_REVISION(3);
 
 __attribute__((used, section(".limine_requests")))
-static struct limine_memmap_request memmap_request = {
-    .id = LIMINE_MEMMAP_REQUEST,
+static volatile struct limine_hhdm_request hhdm_request = {
+    .id = LIMINE_HHDM_REQUEST,
     .revision = 0
 };
 
@@ -18,10 +18,6 @@ static volatile LIMINE_REQUESTS_START_MARKER;
 __attribute__((used, section(".limine_requests_end")))
 static volatile LIMINE_REQUESTS_END_MARKER;
 
-struct limine_memmap_response* get_memory_map() {
-    if (memmap_request.response == 0) { // NULL response
-        panic();
-    }
-
-    return memmap_request.response;
+void* thing() {
+    return (void*)hhdm_request.response->offset;
 }

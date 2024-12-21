@@ -3,6 +3,8 @@
     "files.associations": {
         "*.embeddedhtml": "html",
         "gdt.h": "c",
-        "sysinfo.h": "c"
+        "sysinfo.h": "c",
+        "limineutils.h": "c",
+        "panic.h": "c"
     }
 }
