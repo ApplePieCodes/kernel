@@ -42,3 +42,7 @@ void* memset(void* bufptr, int value, size_t size) {
 		buf[i] = (unsigned char) value;
 	return bufptr;
 }
+
+void parse_memory_map() {
+	
+}

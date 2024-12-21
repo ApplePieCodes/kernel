@@ -17,7 +17,3 @@ static volatile LIMINE_REQUESTS_START_MARKER;
 
 __attribute__((used, section(".limine_requests_end")))
 static volatile LIMINE_REQUESTS_END_MARKER;
-
-void* thing() {
-    return (void*)hhdm_request.response->offset;
-}
